@@ -9,6 +9,7 @@ package:
 environment:
   contents:
     packages:
+      - apk-tools
       - autoconf
       - automake
       - bash
@@ -27,6 +28,7 @@ environment:
       - openssl-dev
       - perl
       - protobuf-c-dev
+      - protobuf-c-compiler
 
 pipeline:
   - uses: fetch
@@ -42,11 +44,11 @@ pipeline:
         --with-gssapi=yes \
         --with-libxml2 \
         --with-openssl=yes \
-        --enable-dnstap \
         --enable-largefile \
         --enable-linux-caps \
         --enable-shared \
-        --disable-static
+        --disable-static \
+        --enable-dnstap
 
   - uses: autoconf/make
 
@@ -78,7 +80,7 @@ pipeline:
 
       cd ${{targets.destdir}}/var/bind
       ln -s ../../usr/share/dns-root-hints/named.root named.ca
-      ln -s named.ca root.cache
+      # ln -s named.ca root.cache
 
   - uses: strip
 
