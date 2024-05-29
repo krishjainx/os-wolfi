@@ -27,8 +27,8 @@ environment:
       - openldap-dev
       - openssl-dev
       - perl
-      - protobuf-c-dev
       - protobuf-c-compiler
+      - protobuf-c-dev
 
 pipeline:
   - uses: fetch
